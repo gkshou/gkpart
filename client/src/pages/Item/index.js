@@ -17,6 +17,8 @@ import Web3 from "web3";
 import { selectedNft, removeSelectedNft } from "../../redux/actions/nftActions";
 
 import { useStyles } from "./styles.js";
+import getWeb3 from "../../utils/getWeb3";
+import ArtToken from "../../contracts/ArtToken.json";
 
 // import { DateRangePicker, DateRange, DateRangeDelimiter } from "@material-ui/pickers";
 import DatePicker,{registerLocale, setDefaultLocale} from "react-datepicker";
@@ -28,7 +30,9 @@ registerLocale('zh-CN', zhCN)
 
 const Item = () => {
   const classes = useStyles();
-
+  const artTokenContract = useSelector(
+      (state) => state.allNft.artTokenContract
+  );
   const { nftId } = useParams();
   const marketplaceContract = useSelector(
       (state) => state.allNft.marketplaceContract
@@ -50,6 +54,7 @@ const Item = () => {
     saleId,
     isForSale,
     isSold,
+      isTransfer,
   } = nft;
 
   // const [value, setValue] = React.useState([null, null]);
@@ -79,7 +84,17 @@ const Item = () => {
 
       // const marketAddress = ArtMarketplace.networks[1337].address;
       // await artTokenContract.methods.approve(marketAddress, items[itemIdex].tokenId).send({from: accounts[0]});
+      if(isSold||!isTransfer){
+        try {
+          const receipt2 = await artTokenContract.methods
+              .approve(marketplaceContract._address,id)
+              .send({gas:210000,from: account });
+          console.log(receipt2);
+        }catch (error) {
+          console.error("Error while giveResaleApproval",error);
+        }
 
+      }
       const receipt = await marketplaceContract.methods
           .putItemForSale(id, price)
           .send({ gas: 210000, from: account });
@@ -89,6 +104,7 @@ const Item = () => {
       alert("Error while puting for sale!");
     }
   }
+
 
   async function buy(saleId, price) {
     try {
@@ -102,7 +118,6 @@ const Item = () => {
       alert("Error while buying!");
     }
   };
-
   return (
       <div className={classes.pageItem}>
         {Object.keys(nft).length === 0 ? (
@@ -221,12 +236,13 @@ const Item = () => {
                             </Button>
                         )}
                         {owner == account && !isForSale &&(
-                            <Link to="/edit-nft">
+                             <Link to={`/transfer/${tokenId}`}>
                               <Button
                                   variant="outlined"
                                   color="primary"
+                                  // onClick={() => putForTransfer(tokenId, price)}
                               >
-                                Edit
+                                Transfer
                               </Button>
                             </Link>
                         )}

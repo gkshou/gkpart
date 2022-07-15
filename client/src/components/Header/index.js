@@ -87,9 +87,9 @@ const Header = () => {
                                             <Link to="/my-nft">
                                                 <MenuItem onClick={handleClose}> My NFTs</MenuItem>
                                             </Link>
-                                            <Link to="/transfer">
-                                                <MenuItem onClick={handleClose}> Transfer </MenuItem>
-                                            </Link>
+                                            {/*<Link to="/transfer">*/}
+                                            {/*    <MenuItem onClick={handleClose}> Transfer </MenuItem>*/}
+                                            {/*</Link>*/}
 
                                         </MenuList>
                                     </ClickAwayListener>

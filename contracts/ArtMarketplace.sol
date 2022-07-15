@@ -77,7 +77,6 @@ contract ArtMarketplace {
       emit itemAddedForSale(newItemId, tokenId, price);
       return newItemId;
   }
-
   function buyItem(uint256 id) 
     ItemExists(id)
     IsForSale(id)

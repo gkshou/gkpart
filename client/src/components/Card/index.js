@@ -13,6 +13,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 
 import { useStyles } from "./styles.js";
 import { ReactComponent as EthereumLogo } from "../../assets/ethereum_logo.svg";
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+
 
 const Card = ({ tokenId, name, image, price, owner,isSold, isForSale }) => {
   let flag_selling = true;

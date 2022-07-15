@@ -91,6 +91,7 @@ const Home = () => {
               saleId: null,
               price:response.data.price,
               isSold: null,
+              isTransfer:false,
             });
           }
 
