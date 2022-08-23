@@ -54,7 +54,7 @@ const Item = () => {
     saleId,
     isForSale,
     isSold,
-      isTransfer,
+    isTransfer,
   } = nft;
 
   // const [value, setValue] = React.useState([null, null]);
@@ -175,7 +175,6 @@ const Item = () => {
                           fullWidth
                           defaultValue={description}
                       />
-
                       <label htmlFor="duration">Duration
                         <DatePicker
                             locale="zh-CN"

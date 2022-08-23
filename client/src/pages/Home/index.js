@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
@@ -29,9 +29,15 @@ import woman from "../../assets/arts/ashline-sketch-brushes-3-2.jpg";
 import stones from "../../assets/arts/rentao_-22-10-.jpg";
 import wale from "../../assets/arts/luzhan-liu-1-1500.jpg";
 import comic from "../../assets/arts/daniel-taylor-black-and-white-2019-2.jpg";
+
 import galerie from "../../assets/galerie.svg";
-
-
+import Business from "../../assets/Business.svg";
+import shsxy from "../../assets/shsxy.svg";
+import shanghai from "../../assets/shanghai.svg";
+import SearchIcon from "@material-ui/icons/Search";
+import InputBase from "@material-ui/core/InputBase";
+import {  TextField, IconButton } from '@material-ui/core';
+import { SearchOutlined } from '@material-ui/icons';
 const Home = () => {
   const classes = useStyles();
   const nft = useSelector((state) => state.allNft.nft);
@@ -140,7 +146,45 @@ const Home = () => {
   }, [dispatch]);
 
   console.log("Nft :", nft);
+  const [keyword, setKeyword] = useState({
+    receive: "",
+  });
+  const {
+    image,
+    name,
+    price,
+    owner,
+    creator,
+    description,
+    tokenId,
+    saleId,
+    isForSale,
+    isSold,
+  } = nft;
+  async function onSubmit (event){
+    event.preventDefault();
+    console.log(keyword.receive);
+    // if(e.keyCode === 13){
+    //     console.log(e.target);
+    // }
+  };
+  useEffect(() => {
+    console.log("keyword:"+keyword.receive);
 
+  },[keyword]);
+  let filterByName=(nft,name)=>{
+    return nft.filter(function(item) {
+      return item.name.indexOf(keyword.receive) >= 0 ;
+    });
+  }
+  const SearchNfts =filterByName(nft,name);
+  console.log(SearchNfts);
+  function onChange(event) {
+    let value = event.target.value;
+    let newData = {};
+    newData.receive = value;
+    setKeyword(newData);
+  }
 
   const nftItem = useSelector((state) => state.allNft.nft);
 
@@ -165,8 +209,9 @@ const Home = () => {
             </Grid>
           </Grid>
           <Grid item xs={6} className={classes.main}>
-            <img src={galerie} alt="galerie" />
+            <img src={shanghai} alt="shanghai" />
             <Typography>A decentralized NFT marketplace where you can expose your art.</Typography>
+
             <Link to="/create-nft">
               <Button variant="contained" color="primary" disableElevation>
                 Mint your art
@@ -193,6 +238,22 @@ const Home = () => {
       </section>
       <section className={classes.allNfts}>
         <Typography className={classes.title}>All artwork</Typography>
+        <form onSubmit={onSubmit}>
+          <TextField
+              id="standard-bare"
+              variant="outlined"
+              defaultValue="search..."
+              InputProps={{
+                endAdornment: (
+                    <IconButton>
+                      <SearchOutlined />
+                    </IconButton>
+                ),
+              }}
+              onChange ={onChange}
+              value = {keyword.receive}
+          />
+        </form>
         <Grid
           container
           direction="row"
@@ -200,10 +261,10 @@ const Home = () => {
           alignItems="center"
           spacing={2}
         >
-          {nftItem.map((nft) => (
-            <Grid item key={nft.tokenId}>
-              <Card {...nft} />
-            </Grid>
+          {SearchNfts.map((SearchNfts) => (
+              <Grid item key={SearchNfts.tokenId}>
+                <Card {...SearchNfts} />
+              </Grid>
           ))}
         </Grid>
       </section>

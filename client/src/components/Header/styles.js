@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) =>({
     width: "10rem"
   },
   account: {
+
     display: "flex",
     alignItems: "center",
   },
@@ -15,8 +16,8 @@ const useStyles = makeStyles((theme) =>({
     marginRight: "0.4rem",
   },
   root: {
-    marginLeft: "auto",
     display: "flex",
+    marginLeft: "auto",
     alignItems: "center",
   },
   paper: {

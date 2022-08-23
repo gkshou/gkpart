@@ -7,8 +7,10 @@ import CreateNFT from "./pages/CreateNFT/index";
 import Item from "./pages/Item/index";
 import EditNFT from "./pages/EditNFT/index";
 import Transfer from "./pages/Transfer/index";
-import MyNFTs from "./pages/My NFTs";
-
+import MyNFTs from "./pages/My NFTs/index";
+import Login from "./pages/Login/index";
+import Signup from "./pages/Signup/index";
+import Classify from "./pages/classify/index";
 import "./App.css";
 
 
@@ -24,6 +26,9 @@ function App() {
           <Route path="/edit-nft" component={EditNFT} />
           <Route path="/my-nft" component={MyNFTs} />
           <Route path="/transfer/:nftId" component={Transfer} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/classify" component={Classify} />
           <Route>404 Not Found!</Route>
         </Switch>
       </Router>
