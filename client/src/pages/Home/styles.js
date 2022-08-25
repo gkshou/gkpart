@@ -1,5 +1,5 @@
 import { alpha, makeStyles } from '@material-ui/core/styles';
-import backImg from "../../assets/arts/rentao_-22-10-.jpg";
+//import backImg from "../../assets/arts/rentao_-22-10-.jpg";
 
 const useStyles = makeStyles((theme) =>({
   homepage: {
@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) =>({
     objectFit: "cover",
     width: "100%",
     height: "100%",
-    
+
   },
 
   banner: {
@@ -45,15 +45,21 @@ const useStyles = makeStyles((theme) =>({
 
   },
   allNfts: {
-    backgroundImage: `url(${backImg})`,
+    //backgroundImage: `url(${backImg})`,
     marginTop: "2rem",
     padding: "0 2rem",
+  },
+  nftheader:{
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+      marginBottom:"1em",
   },
   title: {
     fontFamily: "sans-serif",
     fontSize: "1.8rem",
     fontWeight: "600",
-    marginBottom: "1rem",
+    marginRight:"1rem",
   },
   search: {
     position: 'relative',

@@ -28,6 +28,8 @@ import {useStyles} from './styles.js'
 import logo from '../../assets/shsxy.svg';
 import Grid from "@material-ui/core/Grid";
 import Card from "../Card";
+import {TextField} from "@material-ui/core";
+import {SearchOutlined} from "@material-ui/icons";
 const Header = () => {
     const classes = useStyles();
     const account = useSelector((state) => state.allNft.account);
@@ -82,6 +84,30 @@ const Header = () => {
         }
         prevOpen.current = open;
     }, [open]);
+    async function onSubmit (event){
+        event.preventDefault();
+        console.log(keyword.receive);
+        // if(e.keyCode === 13){
+        //     console.log(e.target);
+        // }
+    };
+    useEffect(() => {
+        console.log("keyword:"+keyword.receive);
+
+    },[keyword]);
+    let filterByName=(nft,name)=>{
+        return nft.filter(function(item) {
+            return item.name.indexOf(keyword.receive) >= 0 ;
+        });
+    }
+    const SearchNfts =filterByName(nft,name);
+    console.log(SearchNfts);
+    function onChange(event) {
+        let value = event.target.value;
+        let newData = {};
+        newData.receive = value;
+        setKeyword(newData);
+    }
     return (
         <React.Fragment>
             <CssBaseline />
@@ -90,66 +116,94 @@ const Header = () => {
                     <Link to="/">
                         <img src={logo} alt="shsxy" className={classes.logo}/>
                     </Link>
-                    <div className={classes.root}>
-                        <div>
-                            <Link to="/classify">
-                                <Button variant="contained" color="primary" disableElevation>
-                                    分类
-                                </Button>
-                            </Link>
-                            <Link to="/login">
-                                <Button variant="contained" color="primary" disableElevation>
-                                    账号登录/注册
-                                </Button>
-                            </Link>
-                            <Button
-                                variant="contained" color="primary"
-                                ref={anchorRef}
-                                aria-controls={open ? 'menu-list-grow' : undefined}
-                                aria-haspopup="true"
-                                onClick={handleToggle}
-                            >
-                                Menu
-                            </Button>
-                            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                                {({ TransitionProps, placement }) => (
-                                    <Grow
-                                        {...TransitionProps}
-                                        style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                                    >
-                                        <Paper>
-                                            <ClickAwayListener onClickAway={handleClose}>
-                                                <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                                    <Link to="/create-nft">
-                                                        <MenuItem onClick={handleClose}>创建NFT</MenuItem>
-                                                    </Link>
-                                                    <Link to="/my-nft">
-                                                        <MenuItem onClick={handleClose}>我的NFT</MenuItem>
-                                                    </Link>
-                                                </MenuList>
-                                            </ClickAwayListener>
-
-                                        </Paper>
-                                    </Grow>
-                                )}
-                            </Popper>
-                        </div>
+                    <div className={classes.search}>
+                    <form onSubmit={onSubmit}>
+                        <TextField
+                            size="small"
+                            id="standard-bare"
+                            variant="outlined"
+                            defaultValue="search..."
+                            InputProps={{
+                                endAdornment: (
+                                    <IconButton>
+                                        <SearchOutlined />
+                                    </IconButton>
+                                ),
+                            }}
+                            onChange ={onChange}
+                            value = {keyword.receive}
+                        />
+                    </form>
                     </div>
-                    <div>
+                    <div className={classes.root}>
+                        {/*<div>*/}
+                        {/*    <Link to="/login">*/}
+                        {/*        <Button variant="contained" color="primary" disableElevation>*/}
+                        {/*            账号登录/注册*/}
+                        {/*        </Button>*/}
+                        {/*    </Link>*/}
+                        {/*    <Button*/}
+                        {/*        variant="contained" color="primary"*/}
+                        {/*        ref={anchorRef}*/}
+                        {/*        aria-controls={open ? 'menu-list-grow' : undefined}*/}
+                        {/*        aria-haspopup="true"*/}
+                        {/*        onClick={handleToggle}*/}
+                        {/*    >*/}
+                        {/*        Menu*/}
+                        {/*    </Button>*/}
+                        {/*    <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>*/}
+                        {/*        {({ TransitionProps, placement }) => (*/}
+                        {/*            <Grow*/}
+                        {/*                {...TransitionProps}*/}
+                        {/*                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}*/}
+                        {/*            >*/}
+                        {/*                <Paper>*/}
+                        {/*                    <ClickAwayListener onClickAway={handleClose}>*/}
+                        {/*                        <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>*/}
+                        {/*                            <Link to="/create-nft">*/}
+                        {/*                                <MenuItem onClick={handleClose}>创建NFT</MenuItem>*/}
+                        {/*                            </Link>*/}
+                        {/*                            <Link to="/my-nft">*/}
+                        {/*                                <MenuItem onClick={handleClose}>我的NFT</MenuItem>*/}
+                        {/*                            </Link>*/}
+                        {/*                        </MenuList>*/}
+                        {/*                    </ClickAwayListener>*/}
+
+                        {/*                </Paper>*/}
+                        {/*            </Grow>*/}
+                        {/*        )}*/}
+                        {/*    </Popper>*/}
+
+                        {/*</div>*/}
+                        <Button href="#" size="large" className={classes.button1}>
+                            NFT要闻
+                        </Button>
+                        <Button href="#" size="large" className={classes.button2}>
+                            NFT产品
+                        </Button>
+                        <Button href="#" size="large" className={classes.button3}>
+                            积分兑换
+                        </Button>
+                    </div>
+                    <div className={classes.account2}>
                         <IconButton
                             edge="end"
                             aria-label="account of current user"
                             aria-controls={classes.account}
                             aria-haspopup="true"
                             onClick={handleProfileMenuOpen}
-                            color="inherit"
                         >
-                            <AccountCircle />
+                            <AccountCircle fontSize="large"/>
                         </IconButton>
                     </div>
                     <div className={classes.account}>
-                        <AccountBalanceWalletIcon titleAccess="Wallet Address" className={classes.walletIcon}/>
-                        <Typography variant="subtitle1">{account.slice(0,7)}...{account.slice(-4)}</Typography>
+
+                        <AccountBalanceWalletIcon
+                            fontSize="large"
+                            color="action"
+                            titleAccess="Wallet Address" className={classes.walletIcon}/>
+
+                        <Typography variant="h6" color="textPrimary">{account.slice(0,7)}...{account.slice(-4)}</Typography>
                     </div>
                 </Toolbar>
             </AppBar>

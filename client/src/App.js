@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "./components/Header/index";
+import Footer from "./components/Footer/index";
 import Home from "./pages/Home/index";
 import CreateNFT from "./pages/CreateNFT/index";
 import Item from "./pages/Item/index";
@@ -11,6 +12,7 @@ import MyNFTs from "./pages/My NFTs/index";
 import Login from "./pages/Login/index";
 import Signup from "./pages/Signup/index";
 import Classify from "./pages/classify/index";
+import Mainpage from "./pages/Mainpage/index";
 import "./App.css";
 
 
@@ -29,8 +31,10 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/classify" component={Classify} />
+          <Route path="/mainpage" component={Mainpage} />
           <Route>404 Not Found!</Route>
         </Switch>
+        <Footer />
       </Router>
     </div>
   );

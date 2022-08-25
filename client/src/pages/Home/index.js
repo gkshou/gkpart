@@ -38,6 +38,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import {  TextField, IconButton } from '@material-ui/core';
 import { SearchOutlined } from '@material-ui/icons';
+import RotationChart from "../../components/RotationChart/index";
 const Home = () => {
   const classes = useStyles();
   const nft = useSelector((state) => state.allNft.nft);
@@ -188,56 +189,59 @@ const Home = () => {
 
   const nftItem = useSelector((state) => state.allNft.nft);
 
-  return (
+
+    return (
     <div className={classes.homepage}>
       <section className={classes.banner}>
-        <Grid container spacing={0} xs={12} className={classes.gridBanner}>
-          <Grid item xs={3}>
-            <Grid container spacing={0}>
-              <Grid item xs={8}>
-                <img src={dreaming} alt="dreaming" className={classes.images} />
-              </Grid>
-              <Grid item xs={4}>
-                <img src={veterans} alt="veterans" className={classes.images} />
-              </Grid>
-              <Grid item xs={7}>
-                <img src={modeling3d} alt="modeling3d" className={classes.images} />
-              </Grid>
-              <Grid item xs={5}>
-                <img src={lionKing} alt="lionKing" className={classes.images} />
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={6} className={classes.main}>
-            <img src={shanghai} alt="shanghai" />
-            <Typography>A decentralized NFT marketplace where you can expose your art.</Typography>
+        <RotationChart />
+        {/*<Grid container spacing={0} xs={12} className={classes.gridBanner}>*/}
+        {/*  <Grid item xs={3}>*/}
+        {/*    <Grid container spacing={0}>*/}
+        {/*      <Grid item xs={8}>*/}
+        {/*        <img src={dreaming} alt="dreaming" className={classes.images} />*/}
+        {/*      </Grid>*/}
+        {/*      <Grid item xs={4}>*/}
+        {/*        <img src={veterans} alt="veterans" className={classes.images} />*/}
+        {/*      </Grid>*/}
+        {/*      <Grid item xs={7}>*/}
+        {/*        <img src={modeling3d} alt="modeling3d" className={classes.images} />*/}
+        {/*      </Grid>*/}
+        {/*      <Grid item xs={5}>*/}
+        {/*        <img src={lionKing} alt="lionKing" className={classes.images} />*/}
+        {/*      </Grid>*/}
+        {/*    </Grid>*/}
+        {/*  </Grid>*/}
+        {/*  <Grid item xs={6} className={classes.main}>*/}
+        {/*    <img src={shanghai} alt="shanghai" />*/}
+        {/*    <Typography>A decentralized NFT marketplace where you can expose your art.</Typography>*/}
 
-            <Link to="/create-nft">
-              <Button variant="contained" color="primary" disableElevation>
-                Mint your art
-              </Button>
-            </Link>
-          </Grid>
-          <Grid item xs={3}>
-            <Grid container spacing={0}>
-              <Grid item xs={8}>
-                <img src={stones} alt="dreaming" className={classes.images} />
-              </Grid>
-              <Grid item xs={4}>
-                <img src={woman} alt="veterans" className={classes.images} />
-              </Grid>
-              <Grid item xs={7}>
-                <img src={wale} alt="modeling3d" className={classes.images} />
-              </Grid>
-              <Grid item xs={5}>
-                <img src={comic} alt="lionKing" className={classes.images} />
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+        {/*    <Link to="/create-nft">*/}
+        {/*      <Button variant="contained" color="primary" disableElevation>*/}
+        {/*        Mint your art*/}
+        {/*      </Button>*/}
+        {/*    </Link>*/}
+        {/*  </Grid>*/}
+        {/*  <Grid item xs={3}>*/}
+        {/*    <Grid container spacing={0}>*/}
+        {/*      <Grid item xs={8}>*/}
+        {/*        <img src={stones} alt="dreaming" className={classes.images} />*/}
+        {/*      </Grid>*/}
+        {/*      <Grid item xs={4}>*/}
+        {/*        <img src={woman} alt="veterans" className={classes.images} />*/}
+        {/*      </Grid>*/}
+        {/*      <Grid item xs={7}>*/}
+        {/*        <img src={wale} alt="modeling3d" className={classes.images} />*/}
+        {/*      </Grid>*/}
+        {/*      <Grid item xs={5}>*/}
+        {/*        <img src={comic} alt="lionKing" className={classes.images} />*/}
+        {/*      </Grid>*/}
+        {/*    </Grid>*/}
+        {/*  </Grid>*/}
+        {/*</Grid>*/}
       </section>
       <section className={classes.allNfts}>
-        <Typography className={classes.title}>All artwork</Typography>
+        <div className={classes.nftheader}>
+        <Typography className={classes.title}>最新NFT产品</Typography>
         <form onSubmit={onSubmit}>
           <TextField
               id="standard-bare"
@@ -254,6 +258,7 @@ const Home = () => {
               value = {keyword.receive}
           />
         </form>
+        </div>
         <Grid
           container
           direction="row"
