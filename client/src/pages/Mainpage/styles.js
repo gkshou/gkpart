@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     video: {
         position: "relative",
-        width: "960px",
+        width: "944px",
         height: "544px",
         objectFit: "cover",
 },

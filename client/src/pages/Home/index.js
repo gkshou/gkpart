@@ -10,7 +10,7 @@ import { api } from "../../services/api";
 
 import ArtMarketplace from "../../contracts/ArtMarketplace.json";
 import ArtToken from "../../contracts/ArtToken.json";
-
+import slick from "./slick.css"
 import {
   setNft,
   setAccount,
@@ -39,6 +39,9 @@ import InputBase from "@material-ui/core/InputBase";
 import {  TextField, IconButton } from '@material-ui/core';
 import { SearchOutlined } from '@material-ui/icons';
 import RotationChart from "../../components/RotationChart/index";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const Home = () => {
   const classes = useStyles();
   const nft = useSelector((state) => state.allNft.nft);
@@ -186,9 +189,67 @@ const Home = () => {
     newData.receive = value;
     setKeyword(newData);
   }
-
+    // function SampleNextArrow(props) {
+    //     const { className, style, onClick } = props;
+    //     return (
+    //         <div
+    //             className={className}
+    //             style={{ ...style, display: "block", background: "grey",fontSize:"15px"}}
+    //             onClick={onClick}
+    //         />
+    //     );
+    // }
+    //
+    // function SamplePrevArrow(props) {
+    //     const { className, style, onClick } = props;
+    //     return (
+    //         <div
+    //             className={className}
+    //             style={{ ...style, display: "block", background: "grey" ,fontSize:"15px"}}
+    //             onClick={onClick}
+    //         />
+    //     );
+    // }
   const nftItem = useSelector((state) => state.allNft.nft);
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        // nextArrow: <SampleNextArrow />,
+        // prevArrow: <SamplePrevArrow />,
 
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
 
     return (
     <div className={classes.homepage}>
@@ -259,19 +320,29 @@ const Home = () => {
           />
         </form>
         </div>
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-        >
-          {SearchNfts.map((SearchNfts) => (
-              <Grid item key={SearchNfts.tokenId}>
-                <Card {...SearchNfts} />
-              </Grid>
-          ))}
-        </Grid>
+        <div className={classes.nftcontent}>
+          <Slider {...settings}>
+            {SearchNfts.map((SearchNfts) => (
+                <Grid item key={SearchNfts.tokenId}>
+                  <Card {...SearchNfts} />
+                </Grid>
+            ))}
+          </Slider>
+        </div>
+        {/*<Grid*/}
+        {/*  container*/}
+        {/*  direction="row"*/}
+        {/*  justifyContent="center"*/}
+        {/*  alignItems="center"*/}
+        {/*  spacing={2}*/}
+        {/*>*/}
+        {/*  {SearchNfts.map((SearchNfts) => (*/}
+        {/*      <Grid item key={SearchNfts.tokenId}>*/}
+        {/*        <Card {...SearchNfts} />*/}
+        {/*      </Grid>*/}
+        {/*  ))}*/}
+        {/*</Grid>*/}
+
       </section>
     </div>
   );

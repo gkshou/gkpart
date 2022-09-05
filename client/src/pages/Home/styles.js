@@ -55,6 +55,9 @@ const useStyles = makeStyles((theme) =>({
     alignItems:"center",
       marginBottom:"1em",
   },
+  nftcontent:{
+   marginBottom:"2rem",
+    },
   title: {
     fontFamily: "sans-serif",
     fontSize: "1.8rem",

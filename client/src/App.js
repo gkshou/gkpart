@@ -13,6 +13,7 @@ import Login from "./pages/Login/index";
 import Signup from "./pages/Signup/index";
 import Classify from "./pages/classify/index";
 import Mainpage from "./pages/Mainpage/index";
+import Product from "./pages/Product/index";
 import "./App.css";
 
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/signup" component={Signup} />
           <Route path="/classify" component={Classify} />
           <Route path="/mainpage" component={Mainpage} />
+          <Route path="/product" component={Product} />
           <Route>404 Not Found!</Route>
         </Switch>
         <Footer />

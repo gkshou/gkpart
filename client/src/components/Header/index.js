@@ -178,9 +178,11 @@ const Header = () => {
                         <Button href="#" size="large" className={classes.button1}>
                             NFT要闻
                         </Button>
-                        <Button href="#" size="large" className={classes.button2}>
+                        {/*<Link to="/product">*/}
+                        <Button href="/product" size="large" className={classes.button2}>
                             NFT产品
                         </Button>
+                        {/*</Link>*/}
                         <Button href="#" size="large" className={classes.button3}>
                             积分兑换
                         </Button>
