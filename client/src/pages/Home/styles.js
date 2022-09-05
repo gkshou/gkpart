@@ -1,6 +1,7 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles } from '@material-ui/core/styles';
+//import backImg from "../../assets/arts/rentao_-22-10-.jpg";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) =>({
   homepage: {
 
   },
@@ -8,8 +9,9 @@ const useStyles = makeStyles({
     objectFit: "cover",
     width: "100%",
     height: "100%",
-    
+
   },
+
   banner: {
     // minHeight: "50vh",
     // maxHeight: "50vh",
@@ -43,15 +45,63 @@ const useStyles = makeStyles({
 
   },
   allNfts: {
+    //backgroundImage: `url(${backImg})`,
     marginTop: "2rem",
     padding: "0 2rem",
   },
+  nftheader:{
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+      marginBottom:"1em",
+  },
+  nftcontent:{
+   marginBottom:"2rem",
+    },
   title: {
     fontFamily: "sans-serif",
     fontSize: "1.8rem",
     fontWeight: "600",
-    marginBottom: "1rem",
-  }
-});
+    marginRight:"1rem",
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  },
+
+}));
 
 export { useStyles };
